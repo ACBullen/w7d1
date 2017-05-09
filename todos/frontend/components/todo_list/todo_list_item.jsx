@@ -1,16 +1,13 @@
 import React from 'react';
-
+import TodoDetailViewContainer from "./todo_detail_view_container";
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {detail: false};
 
   }
 
-  handleClick(e){
-    e.preventDefault();
-    this.props.removeTodo(this.props.todo);
-  }
+
 
   handleDone(e) {
     e.preventDefault();
@@ -20,15 +17,23 @@ class TodoListItem extends React.Component {
     this.props.receiveTodo(properties);
   }
 
+  toggleDetail(e) {
+    e.preventDefault();
+    // if (e.target === e.currentTarget){
+
+      this.setState({detail: !this.state.detail});
+    // }
+  }
+
   render(){
     return (
-    <li> {this.props.todo.title}
-      <br />
-      <p> >>{this.props.todo.body}</p>
-      <button onClick={this.handleDone.bind(this)}> {this.props.todo.done? "Complete": "Incomplete"} </button>
-      <button onClick={this.handleClick.bind(this)}> Delete Task </button>
+      <div className="TodoListItem">
+    <li onClick = {this.toggleDetail.bind(this)} > {this.props.todo.title}
     </li>
-  );
+    <button onClick={this.handleDone.bind(this)}> {this.props.todo.done? "Complete": "Incomplete"} </button>
+    { this.state.detail ? <TodoDetailViewContainer todo={this.props.todo} /> : ""}
+    </div>
+);
   }
 }
 

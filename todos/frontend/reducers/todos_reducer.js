@@ -3,11 +3,11 @@ import merge from 'lodash/merge';
 
 const initialState = {
   1: {
-    id: 1,
-    title: "wash car",
-    body: "with soap",
-    done: false
-  },
+      id: 1,
+      title: "take a shower",
+      body: "and be clean",
+      done: false
+    },
   2: {
     id: 2,
     title: "wash dog",

@@ -6,3 +6,14 @@ export const allTodos = (state) => {
   });
 
 };
+
+export const stepsByTodoId = (state, id) => {
+  let arrayIds = Object.keys(state.steps).filter( (key) => {
+
+    return (id === state.steps[key].todo_id);
+  });
+
+  return arrayIds.map((id)=> {
+    return state.steps[id];
+  });
+}
