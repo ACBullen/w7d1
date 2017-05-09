@@ -17,6 +17,6 @@ window.stepsByTodoId = stepsByTodoId;
 document.addEventListener("DOMContentLoaded", () =>{
   ReactDOM.render(
     <Root store={store} />,
-    document.getElementById('root')
+    document.getElementById('content')
   );
 });
