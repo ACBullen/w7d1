@@ -8,18 +8,20 @@ class TodoDetailView extends React.Component {
 
   handleDelete(e){
     e.preventDefault();
-    this.props.removeTodo(this.props.todo);
+    this.props.deleteTodo(this.props.todo);
   }
 
   render() {
     let todo = this.props.todo;
     let {id, body, title, steps } = todo;
+    debugger
     return (
       <div>
         <ul>
           <li>id:{id}</li>
           <li>body:{body}</li>
         </ul>
+        {todo.tags.map((tag, index)=> <li key={index}>{tag.name}</li> )}
         <button onClick={this.handleDelete.bind(this)}> Delete Task </button>
         <StepListContainer todoId={id}/>
       </div>);

@@ -1,7 +1,9 @@
+
+
 class Api::TodosController < ApplicationController
   def show
-    @todo = Todo.find(params[:id])
-    render json: @todo
+    @todo = Todo.find(params[:id]).include(:steps)
+    render json: @todo, include: :tags
   end
 
   def index
@@ -11,6 +13,8 @@ class Api::TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    
+
     if @todo.save
       render json: @todo
     else
@@ -19,8 +23,8 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find(id: params[:id])
-    if @todo.update_params(todo_params)
+    @todo = Todo.find_by(id: params[:id])
+    if @todo.update_attributes(todo_params)
       render json: @todo
     else
       render json: @todo.errors.full_messages, status: 422
@@ -29,7 +33,7 @@ class Api::TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(id: params[:id])
+    @todo = Todo.find_by(id: params[:id])
     @todo.destroy
     render json: @todo
   end
@@ -37,6 +41,6 @@ class Api::TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo).permit(:body, :title)
+    params.require(:todo).permit(:body, :title, :done, tag_names: [])
   end
 end

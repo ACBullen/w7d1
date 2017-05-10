@@ -6,10 +6,27 @@ const APIUtils = {
     });
   },
   createTodo: function(todo) {
+    // console.log("I have run");
+    // debugger;
     return $.ajax({
       method: "POST",
       url: "api/todos",
-      data: todo
+      data: {todo}
+    });
+  },
+
+  updateTodo: function(todo) {
+    return $.ajax({
+      method: "PATCH",
+      url: `api/todos/${todo.id}`,
+      data: {todo}
+    });
+  },
+
+  deleteTodo: function(todo) {
+    return $.ajax({
+      method: "DELETE",
+      url: `api/todos/${todo.id}`
     });
   }
 };

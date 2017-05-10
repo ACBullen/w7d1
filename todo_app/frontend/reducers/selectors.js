@@ -16,4 +16,8 @@ export const stepsByTodoId = (state, id) => {
   return arrayIds.map((id)=> {
     return state.steps[id];
   });
-}
+};
+
+export const allErrors = (state) => {
+  return state.errors;
+};

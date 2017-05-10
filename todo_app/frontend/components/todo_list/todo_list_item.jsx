@@ -14,7 +14,7 @@ class TodoListItem extends React.Component {
     let properties = this.props.todo;
     properties.done = !properties.done;
 
-    this.props.receiveTodo(properties);
+    this.props.updateTodo(properties);
   }
 
   toggleDetail(e) {
